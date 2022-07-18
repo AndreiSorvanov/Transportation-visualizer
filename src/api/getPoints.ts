@@ -6,4 +6,3 @@ export function getPoints(): Array<IPoint> {
   const points: Array<IPoint> = dbPoints.map((point) => ({ ...point, coordinates: point.coordinates as TPointCoords }));
   return points;
 }
-

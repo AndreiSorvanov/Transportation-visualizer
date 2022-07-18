@@ -1,7 +1,7 @@
 import { Button, Container, Grid, CircularProgress } from '@mui/material';
 import { RoadMap } from '../RoadMap';
 import { useDispatch, useSelector } from 'react-redux';
-import { IState } from '../../store';
+import { isRouteLoadingAction, IState } from '../../store';
 import { IPoint, IRequest, IRouteResponse } from '../../api/types';
 import { getRoute } from '../../api/getRoute';
 import { MouseEvent, useEffect, useState } from 'react';
@@ -58,12 +58,16 @@ export function Content() {
 
   useEffect(() => {
     function fetchRoute(start: IPoint, end: IPoint): void {
+      dispatch(isRouteLoadingAction(true));
       const resp: Promise<IRouteResponse> = getRoute(start.coordinates, end.coordinates);
 
       resp.then((res) => {
         if (res.status === 'OK') {
           setRoute(res.route);
         }
+      })
+      .finally(() => {
+        dispatch(isRouteLoadingAction(false));
       })
     }
 

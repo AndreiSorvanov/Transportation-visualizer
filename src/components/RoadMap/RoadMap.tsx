@@ -1,7 +1,6 @@
 import styles from './RoadMap.module.css';
 import { IPoint } from '../../api/types';
 import { TPointCoords } from '../../config';
-
 import {
   MapContainer,
   TileLayer,
@@ -11,7 +10,9 @@ import {
 } from 'react-leaflet';
 import { LatLngTuple, Map } from 'leaflet';
 import { useState } from 'react';
-import { Container } from '@mui/material';
+import { Box, CircularProgress, Container } from '@mui/material';
+import { IState } from '../../store';
+import { useSelector } from 'react-redux';
 
 interface IRoadMapProps {
   start?: IPoint;
@@ -20,6 +21,8 @@ interface IRoadMapProps {
 }
 
 export function RoadMap({ start, end, route }: IRoadMapProps) {
+  const isRouteLoading = useSelector<IState, boolean>((state) => state.isRouteLoading);
+
   const mapCenter = [55.752, 37.615] as LatLngTuple;
   const mapZoom = 13;
 
@@ -30,10 +33,23 @@ export function RoadMap({ start, end, route }: IRoadMapProps) {
 
   return (
     <Container sx={{
+      position: 'relative',
       width: '100%',
       height: '100%',
-      position: 'relative',
     }}>
+      {
+        isRouteLoading
+        ? <Box sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            zIndex: 1000,
+            transform: 'translate(-50%, -50%)',
+          }}>
+            <CircularProgress/>
+          </Box>
+        : ''
+      }
       <MapContainer ref={(ref) => ref && setMapRef(ref)} className={styles.mapContainer} center={mapCenter} zoom={mapZoom} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -56,6 +72,5 @@ export function RoadMap({ start, end, route }: IRoadMapProps) {
         )}
       </MapContainer>
     </Container>
-
   );
 }

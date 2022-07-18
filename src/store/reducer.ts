@@ -15,6 +15,7 @@ export const DELETE_REQUEST = 'DELETE_REQUEST';
 export const UPDATE_CHOSEN_REQUEST = 'UPDATE_CHOSEN_REQUEST';
 export const IS_REQUESTS_LIST_LOADING = 'IS_REQUESTS_LIST_LOADING';
 export const IS_POINTS_LIST_LOADING = 'IS_POINTS_LIST_LOADING';
+export const IS_ROUTE_LOADING = 'IS_ROUTE_LOADING';
 
 export interface IState {
   points: Array<IPoint>;
@@ -22,6 +23,7 @@ export interface IState {
   chosenRequest?: IRequest;
   isRequestsListLoading: boolean;
   isPointsListLoading: boolean;
+  isRouteLoading: boolean;
 }
 
 const initialState: IState = {
@@ -29,6 +31,7 @@ const initialState: IState = {
   requests: [],
   isRequestsListLoading: false,
   isPointsListLoading: false,
+  isRouteLoading: false,
 }
 
 export const fetchPointsAction: ActionCreator<AnyAction> = () => {
@@ -81,6 +84,10 @@ export const isRequestsListLoadingAction: ActionCreator<AnyAction> = (isLoading:
 
 export const isPointsListLoadingAction: ActionCreator<AnyAction> = (isLoading: boolean) => {
   return { type: IS_POINTS_LIST_LOADING, isLoading };
+}
+
+export const isRouteLoadingAction: ActionCreator<AnyAction> = (isLoading: boolean) => {
+  return { type: IS_ROUTE_LOADING, isLoading };
 }
 
 export const rootReducer: Reducer<IState> = (state = initialState, action) => {
@@ -136,6 +143,11 @@ export const rootReducer: Reducer<IState> = (state = initialState, action) => {
       return {
         ...state,
         isPointsListLoading: action.isLoading,
+      };
+    case IS_ROUTE_LOADING:
+      return {
+        ...state,
+        isRouteLoading: action.isLoading,
       };
     default:
       return state;
