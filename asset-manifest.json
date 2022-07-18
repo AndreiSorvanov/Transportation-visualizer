@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Transportation-visualizer/static/css/main.ad7e16e8.css",
+    "main.js": "/Transportation-visualizer/static/js/main.0a9e533a.js",
+    "static/js/787.28cb0dcd.chunk.js": "/Transportation-visualizer/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/Transportation-visualizer/index.html",
+    "main.ad7e16e8.css.map": "/Transportation-visualizer/static/css/main.ad7e16e8.css.map",
+    "main.0a9e533a.js.map": "/Transportation-visualizer/static/js/main.0a9e533a.js.map",
+    "787.28cb0dcd.chunk.js.map": "/Transportation-visualizer/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ad7e16e8.css",
+    "static/js/main.0a9e533a.js"
+  ]
+}
