@@ -3,6 +3,8 @@ Transportation visualizer application in React & Redux using Leaflet, Material U
 
 It displays the route between the end points of the request on the map.
 
+The service [Geoapify](https://www.geoapify.com/) is used to determine route.
+
 For running locally:
 
 - clone this repo;
